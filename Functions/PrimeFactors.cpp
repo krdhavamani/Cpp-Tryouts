@@ -39,4 +39,5 @@ int main()
     std::cout << "Enter an integer greater than 1:";
     std::cin >> number;
     PrimeFactors(number);
+    return 0;
 }
