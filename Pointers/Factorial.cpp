@@ -5,7 +5,10 @@
 unsigned long long int factorial(unsigned long long int num, unsigned long long int *res)
 {
     if (num!=1)
-        *res = num * factorial(num-1,res);
+    {
+        *res = num * factorial(num-1, res);
+        return *res;
+    }
     else
         return *res;
 }
