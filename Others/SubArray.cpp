@@ -3,31 +3,37 @@
 #include <iostream>
 #include <vector>
 
-int main()
+void findSum(int a[], int size, int Sum)
 {
-    int a[10] = { 3, 4, -7, 3, 1, 3, 1, -4, -2, -2 };
-    int sum, size = sizeof(a)/sizeof(a[0]);
-    std::vector<std::pair<int,int> > sum_index;
-
+    int sum;
+    std::vector<std::pair<int,int>> sum_index;
     for(int i=0; i<size; i++)
     {
         sum = a[i];
-        for(int j=i+1; j<size; j++)
+        for(int j=i+1; j<=size; j++)
         {
-            sum += a[j];
-            if (sum == 0)
+            if (sum == Sum)
             {
-                sum_index.push_back(std::make_pair(i,j));
+                sum_index.push_back(std::make_pair(i,j-1));
             }
+            if (j!=size)
+                sum += a[j];
         }
     }
 
+    // print the sub-arrarys
     for(const auto &p:sum_index)
     {
         for(int i=p.first;i<=p.second;i++)
             std::cout << a[i] << '\t';
         std::cout << '\n';
     }
+}
 
+int main()
+{
+    int a[12] = { 3, 4, -7, 0, 0, 3, 1, 3, 1, -4, -2, -2 };
+    int sum = 7, size = sizeof(a)/sizeof(a[0]);
+    findSum(a, size, sum);
     return 0;
 }
